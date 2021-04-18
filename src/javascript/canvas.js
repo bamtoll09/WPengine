@@ -9,6 +9,7 @@ function create() {
 
     this.canvas.addEventListener("click", onClick, false);
 
+    objs.push(new background());
     objs.push(new player());
     start();
 }
@@ -52,12 +53,14 @@ window.onload = function() {
                 loadScript("./src/javascript/componentManager.js", () => {
                     loadScript("./src/javascript/sprite.js", () => {
                         loadScript("./src/javascript/gameObject.js", () => {
-                            loadScript("./src/javascript/player.js", () => {
-                                canvas = document.getElementById("canvas");
-                                context = new ctx(canvas);
-                                create();
+                            loadScript("./src/javascript/background.js", () => {
+                                loadScript("./src/javascript/player.js", () => {
+                                    canvas = document.getElementById("canvas");
+                                    context = new ctx(canvas);
+                                    create();
 
-                                setInterval(update, 16);
+                                    setInterval(update, 16);
+                                });
                             });
                         });
                     });
